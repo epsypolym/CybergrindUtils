@@ -63,19 +63,19 @@ namespace CGUtils
         {
             if (GameObject.Find("Arena"))
             {
-                AssetBundle joe = AssetBundle.LoadFromFile(Path.Combine(modsdir, "cybergrindutils.unity3d"));
+                AssetBundle bundle = AssetBundle.LoadFromFile(Path.Combine(modsdir, "cybergrindutils.unity3d"));
 
-                GameObject nuts = joe.LoadAsset<GameObject>("Assets/CGStatsController.prefab");
-                GameObject balls = joe.LoadAsset<GameObject>("Assets/CGMusicManager.prefab");
-                joe.Unload(false);
+                GameObject statconprefab = bundle.LoadAsset<GameObject>("Assets/CGStatsController.prefab");
+                GameObject musmanprefab = bundle.LoadAsset<GameObject>("Assets/CGMusicManager.prefab");
+                bundle.Unload(false);
                 gridRef = GameObject.Find("Arena").GetComponent<EndlessGrid>();
                 statman = GameObject.Find("StatsManager").GetComponent<StatsManager>();
                 cg = true;
 
                 volslider = GameObject.Find("FirstRoom/Player/Canvas/OptionsMenu/Audio Options/Music Volume/Slider (1)").GetComponent<Slider>();
 
-                CGUtilsController = GameObject.Instantiate(nuts);
-                if (MusicImport.LoadCustomMusic) { CGMusicManager = GameObject.Instantiate(balls); }
+                CGUtilsController = GameObject.Instantiate(statconprefab);
+                if (MusicImport.LoadCustomMusic) { CGMusicManager = GameObject.Instantiate(musmanprefab); }
                 GameObject stylehud = GameObject.Find("FirstRoom/Player/Canvas");
                 CGUtilsController.transform.SetParent(stylehud.transform);
                 float stupidheightcalc = Screen.currentResolution.height - 10;
