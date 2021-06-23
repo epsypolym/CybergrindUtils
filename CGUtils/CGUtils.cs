@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace CGUtils
 {
@@ -61,7 +62,8 @@ namespace CGUtils
 
         public override void OnLevelWasLoaded(int level)
         {
-            if (GameObject.Find("Arena"))
+            string joe = SceneManager.GetActiveScene().name;
+            if (joe == "Endless")
             {
                 AssetBundle bundle = AssetBundle.LoadFromFile(Path.Combine(modsdir, "cybergrindutils.unity3d"));
 
@@ -72,7 +74,7 @@ namespace CGUtils
                 statman = GameObject.Find("StatsManager").GetComponent<StatsManager>();
                 cg = true;
 
-                volslider = GameObject.Find("FirstRoom/Player/Canvas/OptionsMenu/Audio Options/Music Volume/Slider (1)").GetComponent<Slider>();
+                volslider = GameObject.Find("FirstRoom/Player/Canvas/OptionsMenu/Audio Options/Image/Music Volume/Slider (1)").GetComponent<Slider>();
 
                 CGUtilsController = GameObject.Instantiate(statconprefab);
                 if (MusicImport.LoadCustomMusic) { CGMusicManager = GameObject.Instantiate(musmanprefab); }
